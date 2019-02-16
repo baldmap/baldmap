@@ -1,0 +1,25 @@
+{
+  "name": "baldmap",
+  "version": "1.0.0",
+  "description": "![CF](http://i.imgur.com/7v5ASc8.png) LAB\r =================================================",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baldmap/baldmap.git"
+  },
+  "author": "Guruinder Batth, Jessica Elliot, Skyler Burger, HN",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/baldmap/baldmap/issues"
+  },
+  "homepage": "https://github.com/baldmap/baldmap#readme",
+  "devDependencies": {
+    "jest": "^24.1.0"
+  },
+  "dependencies": {
+    "file-system": "^2.2.2"
+  }
+}
