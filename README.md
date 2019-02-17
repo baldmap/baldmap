@@ -1,18 +1,15 @@
 ![CF](http://i.imgur.com/7v5ASc8.png) LAB
 =================================================
 
-## Project Name
+##  baldMap
 
-### Author: Student/Group Name
+### Author: GB, SB, JE, HN
 
 ### Links and Resources
-* [repo](http://xyz.com)
-* [travis](http://xyz.com)
-* [back-end](http://xyz.com) (when applicable)
-* [front-end](http://xyz.com) (when applicable)
+* [repo](https://github.com/baldmap)
+* [travis](https://www.travis-ci.com/baldmap/baldmap)
 
 #### Documentation
-* [swagger](http://xyz.com) (API assignments only)
 * [jsdoc](http://xyz.com) (All assignments)
 
 ### Modules
