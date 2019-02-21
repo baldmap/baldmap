@@ -24,22 +24,25 @@ Bitmap.prototype.parse = function(buffer) {
   this.width = buffer.readInt32LE(18);
   this.height = buffer.readInt32LE(22);
   this.bitsPerPixel = buffer.readInt16LE(28);
-  this.colorArray = JSON.stringify(buffer.slice(54, this.offset));
+  this.colorArray = colorTable(buffer, this.offset);
   this.pixelArray = buffer.slice(1078);
   if (!this.colorArray.length){
     throw 'Invalid .bmp format';
   }
 
-
-  let colors = JSON.parse(this.colorArray).data;
-  console.log(this);
-
-  console.log(colors)
-  //... and so on
+  console.log(this)
 };
 
-Bitmap.prototype.colorTable = () => {
+const colorTable = (buffer, offset) => {
+  let colorData = JSON.stringify(buffer.slice(54, offset));
+  let colorDataParsed = JSON.parse(colorData).data;
 
+  let newColorArray = [];
+  for(let i = 0; i < (colorDataParsed.length / 4); i++) {
+    let start = i * 4;
+    newColorArray.push(colorDataParsed.slice(start, start + 4));
+  }
+  return newColorArray;
 };
 
 /**
