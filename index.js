@@ -24,6 +24,7 @@ Bitmap.prototype.parse = function(buffer) {
   this.width = buffer.readInt32LE(18);
   this.height = buffer.readInt32LE(22);
   this.bitsPerPixel = buffer.readInt16LE(28);
+  this.colorData = buffer.slice(54, this.offset);
   this.colorArray = colorTable(buffer, this.offset);
   this.pixelArray = buffer.slice(1078);
   if (!this.colorArray.length){
