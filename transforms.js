@@ -6,9 +6,9 @@
  * Pro Tip: Use "pass by reference" to alter the bitmap's buffer in place so you don't have to pass it around ...
  * @param bmp
  */
-const transformGrey = (bmp) => {
-  if(bmp.type !== 'BM') throw 'Invalid .bmp format';
-  console.log('Transforming bitmap into greyscale', bmp);
+const transformGrey = (bitmap) => {
+  if(bitmap.type !== 'BM') throw 'Invalid .bmp format';
+  console.log('Transforming bitmap into greyscale');
   let colorArray = bitmap.colorArray;
   for (let i = 0; i < colorArray.length; i++) {
     if (i > 0) {
@@ -18,7 +18,7 @@ const transformGrey = (bmp) => {
       colorArray[i][2] = grey;
     }
   }
-  rewrite(colorArray);
+  rewrite(colorArray, bitmap);
 };
 
 const transformBlue = (bitmap) => {
@@ -27,7 +27,7 @@ const transformBlue = (bitmap) => {
     if(i > 0) colorArray[i][0] = 255;
   }
   console.log('I\'m Blue!');
-  rewrite(colorArray);
+  rewrite(colorArray, bitmap);
 };
 
 const transformAcid = (bitmap) => {
@@ -41,7 +41,7 @@ const transformAcid = (bitmap) => {
       colorArray[i][2] = Math.floor(Math.random() * 256);
     }
   }
-  rewrite(colorArray);
+  rewrite(colorArray, bitmap);
 };
 
 const transformInvert = (bitmap) => {
@@ -55,10 +55,10 @@ const transformInvert = (bitmap) => {
       colorArray[i][2] = 255 - colorArray[i][2];
     }
   }
-  rewrite(colorArray);
+  rewrite(colorArray, bitmap);
 };
 
-const rewrite = (colorArray) => {
+const rewrite = (colorArray, bitmap) => {
   let rewriteOffset = 54;
   colorArray.forEach(arr => {
     for (let i = 0; i < arr.length; i++) {
