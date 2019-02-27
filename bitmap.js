@@ -1,5 +1,7 @@
 'use strict';
 
+const transforms = require('./index');
+
 class Bitmap{
   constructor(filePath){
     this.file = filePath;
@@ -14,8 +16,6 @@ class Bitmap{
     if (!this.colorArray.length){
       throw 'Invalid .bmp format';
     }
-
-    console.log(this)
   }
   colorTable(buffer, offset){
     let colorData = JSON.stringify(buffer.slice(54, offset));
