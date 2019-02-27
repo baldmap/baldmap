@@ -61,10 +61,12 @@ const transformGreyscale = (bmp) => {
   let colorArray = bitmap.colorArray;
   for (let i = 0; i < colorArray.length; i++) {
     if (i > 0) {
-      colorArray[i][0] = Math.floor(colorArray[i][0] * 0.07);
-      colorArray[i][1] = Math.floor(colorArray[i][1] * 0.72);
-      colorArray[i][2] = Math.floor(colorArray[i][2] * 0.21);
+      let grey = Math.floor((colorArray[i][0] + colorArray[i][1] + colorArray[i][2]) / 3);
+      colorArray[i][0] = grey;
+      colorArray[i][1] = grey;
+      colorArray[i][2] = grey;
     }
+
   }
   rewrite(colorArray);
 };
@@ -78,9 +80,23 @@ const transformBlue = (bitmap) => {
   rewrite(colorArray);
 };
 
-const doTheInversion = (bmp) => {
-  if(bmp.type !== 'BM') throw 'Invalid .bmp format';
-  console.log('Transforming bitmap into greyscale', bmp);
+const transformAcid = (bitmap) => {
+  if(bitmap.type !== 'BM') throw 'Invalid .bmp format';
+  console.log('Transforming bitmap into acid');
+  let colorArray = bitmap.colorArray;
+  for (let i = 0; i < colorArray.length; i++) {
+    if (i > 0) {
+      colorArray[i][0] = Math.floor(Math.random() * 256);
+      colorArray[i][1] = Math.floor(Math.random() * 256);
+      colorArray[i][2] = Math.floor(Math.random() * 256);
+    }
+  }
+  rewrite(colorArray);
+};
+
+const doTheInversion = (bitmap) => {
+  if(bitmap.type !== 'BM') throw 'Invalid .bmp format';
+  console.log('Transforming bitmap into greyscale');
   let colorArray = bitmap.colorArray;
   for (let i = 0; i < colorArray.length; i++) {
     if (i > 0) {
@@ -111,7 +127,8 @@ const rewrite = (colorArray) => {
 const transforms = {
   greyscale: transformGreyscale,
   invert: doTheInversion,
-  blue: transformBlue
+  blue: transformBlue,
+  acid: transformAcid
 };
 
 // ------------------ GET TO WORK ------------------- //
