@@ -58,18 +58,41 @@ Bitmap.prototype.transform = function(operation) {
 const transformGreyscale = (bmp) => {
   if(bmp.type !== 'BM') throw 'Invalid .bmp format';
   console.log('Transforming bitmap into greyscale', bmp);
-
-  
-
+  let colorArray = bitmap.colorArray;
+  for (let i = 0; i < colorArray.length; i++) {
+    if (i > 0) {
+      colorArray[i][0] = Math.floor(colorArray[i][0] * 0.07);
+      colorArray[i][1] = Math.floor(colorArray[i][1] * 0.72);
+      colorArray[i][2] = Math.floor(colorArray[i][2] * 0.21);
+    }
+  }
+  rewrite(colorArray);
 };
 
 const transformBlue = (bitmap) => {
   let colorArray = bitmap.colorArray;
   for (let i = 0; i < colorArray.length; i++) {
-    colorArray[i][0] = 255;
+    if(i > 0) colorArray[i][0] = 255;
   }
   console.log('I\'m Blue!');
+  rewrite(colorArray);
+};
 
+const doTheInversion = (bmp) => {
+  if(bmp.type !== 'BM') throw 'Invalid .bmp format';
+  console.log('Transforming bitmap into greyscale', bmp);
+  let colorArray = bitmap.colorArray;
+  for (let i = 0; i < colorArray.length; i++) {
+    if (i > 0) {
+      colorArray[i][0] = 255 - colorArray[i][0];
+      colorArray[i][1] = 255 - colorArray[i][1];
+      colorArray[i][2] = 255 - colorArray[i][2];
+    }
+  }
+  rewrite(colorArray);
+};
+
+const rewrite = (colorArray) => {
   let rewriteOffset = 54;
   colorArray.forEach(arr => {
     for (let i = 0; i < arr.length; i++) {
@@ -79,9 +102,7 @@ const transformBlue = (bitmap) => {
   });
 };
 
-const doTheInversion = (bmp) => {
-  bmp = {};
-}
+
 
 /**
  * A dictionary of transformations
