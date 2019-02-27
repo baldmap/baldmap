@@ -18,20 +18,13 @@ function Bitmap(filePath) {
 Bitmap.prototype.parse = function(buffer) {
   this.buffer = buffer;
   this.type = buffer.toString('utf-8', 0, 2);
-  this.size = buffer.readInt32LE(2);
   this.offset = buffer.readInt32LE(10);
-  this.headerSize = buffer.readInt32LE(14);
-  this.width = buffer.readInt32LE(18);
-  this.height = buffer.readInt32LE(22);
-  this.bitsPerPixel = buffer.readInt16LE(28);
   this.colorData = buffer.slice(54, this.offset);
   this.colorArray = colorTable(buffer, this.offset);
   this.pixelArray = buffer.slice(1078);
   if (!this.colorArray.length){
     throw 'Invalid .bmp format';
   }
-
-  console.log(this)
 };
 
 const colorTable = (buffer, offset) => {
@@ -50,11 +43,11 @@ const colorTable = (buffer, offset) => {
  * Transform a bitmap using some set of rules. The operation points to some function, which will operate on a bitmap instance
  * @param operation
  */
-// Bitmap.prototype.transform = function(operation) {
-//   // This is really assumptive and unsafe
-//   transforms[operation](this);
-//   this.newFile = this.file.replace(/\.bmp/, `.${operation}.bmp`);
-// };
+Bitmap.prototype.transform = function(operation) {
+  // This is really assumptive and unsafe
+  transforms[operation](this);
+  this.newFile = this.file.replace(/\.bmp/, `.${operation}.bmp`);
+};
 
 /**
  * Sample Transformer (greyscale)
@@ -63,13 +56,27 @@ const colorTable = (buffer, offset) => {
  * @param bmp
  */
 const transformGreyscale = (bmp) => {
-
+  if(bmp.type !== 'BM') throw 'Invalid .bmp format';
   console.log('Transforming bitmap into greyscale', bmp);
 
-  //TODO: Figure out a way to validate that the bmp instance is actually valid before trying to transform it
+  
 
-  //TODO: alter bmp to make the image greyscale ...
+};
 
+const transformBlue = (bitmap) => {
+  let colorArray = bitmap.colorArray;
+  for (let i = 0; i < colorArray.length; i++) {
+    colorArray[i][0] = 255;
+  }
+  console.log('I\'m Blue!');
+
+  let rewriteOffset = 54;
+  colorArray.forEach(arr => {
+    for (let i = 0; i < arr.length; i++) {
+      bitmap.buffer[rewriteOffset] = arr[i];
+      rewriteOffset++;
+    }
+  });
 };
 
 const doTheInversion = (bmp) => {
@@ -82,7 +89,8 @@ const doTheInversion = (bmp) => {
  */
 const transforms = {
   greyscale: transformGreyscale,
-  invert: doTheInversion
+  invert: doTheInversion,
+  blue: transformBlue
 };
 
 // ------------------ GET TO WORK ------------------- //
@@ -95,16 +103,16 @@ function transformWithCallbacks() {
       throw err;
     }
     bitmap.parse(buffer);
-    // bitmap.transform(operation);
+    bitmap.transform(operation);
 
     // Note that this has to be nested!
     // Also, it uses the bitmap's instance properties for the name and thew new buffer
-    // fs.writeFile(bitmap.newFile, bitmap.buffer, (err, out) => {
-    //   if (err) {
-    //     throw err;
-    //   }
-    //   console.log(`Bitmap Transformed: ${bitmap.newFile}`);
-    // });
+    fs.writeFile(bitmap.newFile, bitmap.buffer, (err, out) => {
+      if (err) {
+        throw err;
+      }
+      console.log(`Bitmap Transformed: ${bitmap.newFile}`);
+    });
 
   });
 }
