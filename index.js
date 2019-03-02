@@ -79,7 +79,5 @@ let bitmap = new Bitmap(file);
 
 transformWithCallbacks();
 
-module.exports = transforms;
-
 
 

@@ -1,4 +1,4 @@
-![CF](http://i.imgur.com/7v5ASc8.png) LAB
+![CF](http://i.imgur.com/7v5ASc8.png) LAB 05
 =================================================
 
 ##  baldMap
@@ -9,24 +9,17 @@
 * [repo](https://github.com/baldmap)
 * [travis](https://www.travis-ci.com/baldmap/baldmap)
 
-#### Documentation
-* [jsdoc](http://xyz.com) (All assignments)
-
 ### Modules
-#### `modulename.js`
+#### `transform.js`
 ##### Exported Values and Methods
 
-###### `foo(thing) -> string`
-Usage Notes or examples
+###### `transformGreyscale(bitmap)`
+Takes in a bitmap object and uses it's color array to make alterations to the bitmap's buffer. It then calls a rewrite function to write over the original buffer with the new color array. 
 
 ###### `bar(array) -> array`
 Usage Notes or examples
 
 ### Setup
-#### `.env` requirements
-* `PORT` - Port Number
-* `MONGODB_URI` - URL to the running mongo instance/db
-
 #### Running the app
 * `npm start`
 * Endpoint: `/foo/bar/`
@@ -38,6 +31,3 @@ Usage Notes or examples
 * How do you run tests?
 * What assertions were made?
 * What assertions need to be / should be made?
-
-#### UML
-Link to an image of the UML for your application and response to events
