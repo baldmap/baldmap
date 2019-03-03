@@ -4,19 +4,19 @@
 
 const fs = require('fs');
 
-describe('bitmap transformations', function () {
-    it('should process a valid bitmap file', function () {
-        let output = '';
-        let file = '/baldy.bmp';
-        const runTest = function (){
-            let buffer = fs.readFile(file, (error, buffer) => {
-                console.log(file)
-               if(error) console.error(error);
-            });
-            output =  buffer.toString('utf-8', 0, 2);
-            // return output;
+describe('bitmap transformations', () => {
+    it('should process a valid bitmap file', () => {
+        let file = __dirname + '/../assets/baldy.bmp';
+        console.log('Path: '+ file);
+
+        function runTest(){
+            let buffer = fs.readFileSync(file);
+            let output = buffer.toString('utf-8', 0, 2);
+
+            console.log(output);
+            return output;
         }
-        runTest();
-        expect(output).toEqual('BM');
+
+        expect(runTest()).toEqual('BM');
     });
 });

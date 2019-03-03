@@ -31,22 +31,22 @@ For this assignment you will be building a bitmap (`.bmp`) transformer CLI. It w
 * The CLI should log a success message on completion
 
 ## Testing 
-* Use BDD `describe` and `test` methods to define discriptive tests and increase readablity
+* Use BDD `describe` and `test` methods to define descriptive tests and increase readability
 * Each `test` callback should aim to test a small well defined feature of a function
-* Write tests to ensure each function behaves correctly with valid and invalud inputs
-* The CLI should be tested without using `child_process` or any equivilant third party librarys
+* Write tests to ensure each function behaves correctly with valid and invalid inputs
+* The CLI should be tested without using `child_process` or any equivalent third party libraries
 
 ###  Documentation
 Complete the README.md file included in the lab folder
 
-Note that there are few places in the starter code (TODO's) that call upon you to reflect on what the code is doing. Please add these notes to your doucmentation as well.
+Note that there are few places in the starter code (TODO's) that call upon you to reflect on what the code is doing. Please add these notes to your documentation as well.
 
 ###### Strategy
-You will want to define a strategy for solving the problem before you begin to code. Once you have a strategy defined, you can break it into steps that can be split into helper modules. Each helper module should solve a small specific problem. The main module should utilize the helper modules to execute your original stratagy.
+You will want to define a strategy for solving the problem before you begin to code. Once you have a strategy defined, you can break it into steps that can be split into helper modules. Each helper module should solve a small specific problem. The main module should utilize the helper modules to execute your original strategy.
 
 1. Gather user input (infile and transform)
 1. Read the input bitmap file using the fs module
-1. Parse the bitmap's buffer into object represeting a bitmap (using a constructor)
+1. Parse the bitmap's buffer into object representing a bitmap (using a constructor)
 1. Using metadata from the parsed bitmap object run a transform on the buffer directly (mutate the color or raster data)
 1. Write the mutated buffer to the output file path
 

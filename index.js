@@ -14,7 +14,7 @@ class Bitmap{
     this.colorData = buffer.slice(54, this.offset);
     this.colorArray = this.colorTable(buffer, this.offset);
     this.pixelArray = buffer.slice(1078);
-    if (!this.colorArray.length){
+    if (!this.colorArray.length) {
       throw 'Invalid .bmp format';
     }
   }
