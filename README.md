@@ -1,7 +1,7 @@
 ![CF](http://i.imgur.com/7v5ASc8.png) LAB 05
 =================================================
 
-##  baldMap
+##  baldMap [![Build Status](https://www.travis-ci.com/baldmap/baldmap.svg?branch=master)](https://www.travis-ci.com/baldmap/baldmap)
 
 ### Author: GB, SB, JE, HN
 
