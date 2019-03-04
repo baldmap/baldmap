@@ -14,20 +14,29 @@
 ##### Exported Values and Methods
 
 ###### `transformGreyscale(bitmap)`
-Takes in a bitmap object and uses it's color array to make alterations to the bitmap's buffer. It then calls a rewrite function to write over the original buffer with the new color array. 
+Takes in a bitmap object and uses it's color array to make alterations to the bitmap's buffer. For each color in the color array we apply a grey-scaling formula of (R + G + B)/3. It then calls a rewrite function to write over the original buffer with the new color array. 
 
-###### `bar(array) -> array`
-Usage Notes or examples
+###### `transformBlue(bitmap)`
+Takes in a bitmap object and uses it's color array to make alterations to the bitmap's buffer. For each color in the color array we max out the blue value by setting it to 255. It then calls a rewrite function to write over the original buffer with the new color array.
+
+###### `transformInvert(bitmap)`
+Takes in a bitmap object and uses it's color array to make alterations to the bitmap's buffer. For each color in the color array we take each RGB value and reassign it to (255 - RGB value). It then calls a rewrite function to write over the original buffer with the new color array.
+
+###### `transformAcid(bitmap)`
+Takes in a bitmap object and uses it's color array to make alterations to the bitmap's buffer. For each color in the color array we assign each RGB value  a random number between 0 and 255. It then calls a rewrite function to write over the original buffer with the new color array.  
 
 ### Setup
 #### Running the app
-* `npm start`
-* Endpoint: `/foo/bar/`
-  * Returns a JSON object with abc in it.
-* Endpoint: `/bing/zing/`
-  * Returns a JSON object with xyz in it.
+* `node index.js ./assests/baldy.bmp {transform}`
+* Transform: `grey`
+  * Creates a new .bmp file that is grey-scaled.
+* Transform: `blue`
+  * Creates a new .bmp file that is blue-scaled.
+* Transform: `invert`
+  * Creates a new .bmp file that is color-inverted.
+* Transform: `acid`
+  * Creates a new .bmp file that has completely random color values.
   
 #### Tests
-* How do you run tests?
-* What assertions were made?
-* What assertions need to be / should be made?
+* `jest index.test.js`
+* We made sure that our code only processes a valid bitmap file by checking the file type ('BM') in the header of the file.
