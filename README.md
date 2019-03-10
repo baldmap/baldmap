@@ -27,7 +27,7 @@ Takes in a bitmap object and uses it's color array to make alterations to the bi
 
 ### Setup
 #### Running the app
-* `node index.js ./assests/baldy.bmp {transform}`
+* `node index.js ./assets/baldy.bmp {transform}`
 * Transform: `grey`
   * Creates a new .bmp file that is grey-scaled.
 * Transform: `blue`
