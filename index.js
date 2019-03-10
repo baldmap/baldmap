@@ -77,7 +77,10 @@ const readImage = (bitmap, operation) => {
 // TODO: Explain how this works (in your README)
 const [file, operation] = process.argv.slice(2);
 
-let bitmap = new Bitmap(file);
-readImage(bitmap, operation);
+// H'Liana - for some reason, Travis is thinking the test command is the 'file' which throws an error. This helps prevent it.
+if (file !== '--coverage'){
+  let bitmap = new Bitmap(file);
+  readImage(bitmap, operation);
+}
 
 module.exports = {Bitmap};
